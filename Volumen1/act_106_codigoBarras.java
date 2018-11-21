@@ -24,15 +24,12 @@ public class act_106_codigoBarras {
 			try { //Try para comprobar que el dato introducido es un número.
 				
 				int [] EAN8 = {0,0,0,0,0,0,0,0}, EAN13 = {0,0,0,0,0,0,0,0,0,0,0,0,0}; //Definimos espacio para almacenar codigos de barra segun su EAN
-				
-				int controlCodigo = 0; //Variable para realizar la suma de comprobación
-				
-				boolean par = false; //Para saber si el número que sumamos es par o impar para cumplir la formula. Empieza impar debido a que analiza el primer numero despues del control
-				
-				String introducido = ""; //String para almacenar el número introducido que posteriormente se parsea a int
-				
-				byte auxiliar; //Variable auxiliar usada para saber la longitud del código introducido
-				byte contador13=13, contador8=8;
+				String prefijoStr =""; //Obtener prefijos.
+				int controlCodigo = 0; //Realizar la suma de comprobación
+				boolean par = false; //Saber si el número que sumamos es par o impar para cumplir la formula. Empieza impar debido a que analiza el primer numero despues del control
+				String introducido = ""; //Almacenar el número introducido que posteriormente se parsea a int
+				byte auxiliar; //Usada para saber la longitud del código introducido
+				byte contador13=13, contador8=8; //Contadores para cada EAN
 				
 				introducido = lector.next();
 				auxiliar = (byte) introducido.length();
@@ -89,8 +86,31 @@ public class act_106_codigoBarras {
 					
 					controlCodigo = controlCodigo + EAN13[12];
 					if (controlCodigo%10 == 0) { //calcular si es correcto o no (SI: es multiplo de 10. N0: no es multiplo de 10)
-						System.out.println("SI ");
-					} else System.out.println("NO");
+						System.out.print("SI ");
+					} else System.out.print("NO ");
+					
+					StringBuilder prefijo = new StringBuilder(); //Necesario para obtener el prefijo del código de barras
+					prefijo.append(EAN13[0]).append(EAN13[1]).append(EAN13[2]);
+					prefijoStr = prefijo.toString(); //necesario para comparar como si fuese una tabla.
+					
+					switch(prefijoStr) {
+					case "380": System.out.println("Bulgaria"); break;
+					case "539": System.out.println("Irlanda"); break;
+					case "560": System.out.println("Portugal"); break;
+					case "759": System.out.println("Venezuela"); break;
+					case "850": System.out.println("Cuba"); break;
+					case "890": System.out.println("India"); break;
+					default: //si no está en los anteriores...
+						switch(prefijoStr.substring(0, 2)) { //obvia el 3r número
+						case "50": System.out.println("Inglaterra"); break;
+						case "70": System.out.println("Noruega"); break;
+						default: //si no está en los anteriores...
+							switch(prefijoStr.substring(0, 1)) { //obvia el 2o número
+							case "0": System.out.println("EEUU"); break;
+							default: System.out.println("Desconocido"); break; //No está en el sistema
+							}
+						}
+					}					
 				}
 				
 //--------------[Números > EAN-13]--------------------------------------------------------------------------------------------------------------------------------------------//
