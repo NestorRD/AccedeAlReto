@@ -1,7 +1,7 @@
-//NÈstor Romero DÌaz
-//Finish date: 14-11-2018
+//N√©stor Romero D√≠az
+//Finish date: 15-11-2018
 //Link to challenge: https://www.aceptaelreto.com/problem/statement.php?id=106
-//Use: Programa que dado un cÛdigo de barras, calcula si este es v·lido seg˙n si es EAN8 O EAN13 y en ˙ltimo caso dice pais de procedencia o Desconocido si se da el caso
+//Use: Programa que dado un c√≥digo de barras, calcula si este es v√°lido seg√∫n si es EAN8 O EAN13 y en √∫ltimo caso dice pais de procedencia o Desconocido si se da el caso
 
 package Volumen1;
 
@@ -11,42 +11,42 @@ public class act_106_codigoBarras {
 
 	public static void main(String[] args) {
 		
-		boolean control = false; //Para control del bucle. Solo ser· true si usuario introduce: 0
+		boolean control = false; //Para control del bucle. Solo ser√° true si usuario introduce: 0
 		
 		Scanner lector = new Scanner(System.in);
 		
-		System.out.println("Introduce n˙mero de barras EAN-8 o EAN-13.");
-		System.out.println("Introduce 0 si no quieres introducir m·s n˙meros.");
+		System.out.println("Introduce n√∫mero de barras EAN-8 o EAN-13.");
+		System.out.println("Introduce 0 si no quieres introducir m√°s n√∫meros.");
 		
 		
-		do { //Bucle que se repite hasta que el usuario introduce el n˙mero 0
+		do { //Bucle que se repite hasta que el usuario introduce el n√∫mero 0
 			
-			try { //Try para comprobar que el dato introducido es un n˙mero.
+			try { //Try para comprobar que el dato introducido es un n√∫mero.
 				
 				int [] EAN8 = {0,0,0,0,0,0,0,0}, EAN13 = {0,0,0,0,0,0,0,0,0,0,0,0,0}; //Definimos espacio para almacenar codigos de barra segun su EAN
 				String prefijoStr =""; //Obtener prefijos.
-				int controlCodigo = 0; //Realizar la suma de comprobaciÛn
-				boolean par = false; //Saber si el n˙mero que sumamos es par o impar para cumplir la formula. Empieza impar debido a que analiza el primer numero despues del control
-				String introducido = ""; //Almacenar el n˙mero introducido que posteriormente se parsea a int
-				byte auxiliar; //Usada para saber la longitud del cÛdigo introducido
+				int controlCodigo = 0; //Realizar la suma de comprobaci√≥n
+				boolean par = false; //Saber si el n√∫mero que sumamos es par o impar para cumplir la formula. Empieza impar debido a que analiza el primer numero despues del control
+				String introducido = ""; //Almacenar el n√∫mero introducido que posteriormente se parsea a int
+				byte auxiliar; //Usada para saber la longitud del c√≥digo introducido
 				byte contador13=13, contador8=8; //Contadores para cada EAN
 				
 				introducido = lector.next();
 				auxiliar = (byte) introducido.length();
 				
-				if (introducido.equalsIgnoreCase("0")) { //Si el valor introducido es un 0, pondr· auxiliar como 0 para finalizar el programa.
+				if (introducido.equalsIgnoreCase("0")) { //Si el valor introducido es un 0, pondr√° auxiliar como 0 para finalizar el programa.
 					auxiliar = 0;
 				}
 				
 //--------------[EAN-8]-------------------------------------------------------------------------------------------------------------------------------------------------------//
 				
 				if (auxiliar>0 && auxiliar<=8) {
-					for(int i=introducido.length()-1; i>=0; i--) { //Introducimos n˙meros en array...
+					for(int i=introducido.length()-1; i>=0; i--) { //Introducimos n√∫meros en array...
 						EAN8[contador8-1]= Byte.parseByte(introducido.valueOf(introducido.charAt(i)));
 						contador8--;
 					}
 					
-					for(int i=7; i>=0; i--) { //sumamos los n˙meros para la posterior comprobaciÛn
+					for(int i=7; i>=0; i--) { //sumamos los n√∫meros para la posterior comprobaci√≥n
 						if (i < 7 && par == false) {
 							controlCodigo = controlCodigo + (EAN8[i] * 3);
 							par = true;
@@ -67,12 +67,12 @@ public class act_106_codigoBarras {
 //--------------[EAN-13]------------------------------------------------------------------------------------------------------------------------------------------------------//
 
 				if (auxiliar>8 && auxiliar<=13) {
-					for(int i=introducido.length()-1; i>=0; i--) { //Introducimos n˙meros en array...
+					for(int i=introducido.length()-1; i>=0; i--) { //Introducimos n√∫meros en array...
 						EAN13[contador13-1]= Byte.parseByte(introducido.valueOf(introducido.charAt(i)));
 						contador13--;
 					}
 					
-					for(int i=12; i>=0; i--) { //sumamos los n˙meros para la posterior comprobaciÛn
+					for(int i=12; i>=0; i--) { //sumamos los n√∫meros para la posterior comprobaci√≥n
 						if (i < 12 && par == false) {
 							controlCodigo = controlCodigo + (EAN13[i] * 3);
 							par = true;
@@ -89,7 +89,7 @@ public class act_106_codigoBarras {
 						System.out.print("SI ");
 					} else System.out.print("NO ");
 					
-					StringBuilder prefijo = new StringBuilder(); //Necesario para obtener el prefijo del cÛdigo de barras
+					StringBuilder prefijo = new StringBuilder(); //Necesario para obtener el prefijo del c√≥digo de barras
 					prefijo.append(EAN13[0]).append(EAN13[1]).append(EAN13[2]);
 					prefijoStr = prefijo.toString(); //necesario para comparar como si fuese una tabla.
 					
@@ -100,23 +100,23 @@ public class act_106_codigoBarras {
 					case "759": System.out.println("Venezuela"); break;
 					case "850": System.out.println("Cuba"); break;
 					case "890": System.out.println("India"); break;
-					default: //si no est· en los anteriores...
-						switch(prefijoStr.substring(0, 2)) { //obvia el 3r n˙mero
+					default: //si no est√° en los anteriores...
+						switch(prefijoStr.substring(0, 2)) { //obvia el 3r n√∫mero
 						case "50": System.out.println("Inglaterra"); break;
 						case "70": System.out.println("Noruega"); break;
-						default: //si no est· en los anteriores...
-							switch(prefijoStr.substring(0, 1)) { //obvia el 2o n˙mero
+						default: //si no est√° en los anteriores...
+							switch(prefijoStr.substring(0, 1)) { //obvia el 2o n√∫mero
 							case "0": System.out.println("EEUU"); break;
-							default: System.out.println("Desconocido"); break; //No est· en el sistema
+							default: System.out.println("Desconocido"); break; //No est√° en el sistema
 							}
 						}
 					}					
 				}
 				
-//--------------[N˙meros > EAN-13]--------------------------------------------------------------------------------------------------------------------------------------------//
+//--------------[N√∫meros > EAN-13]--------------------------------------------------------------------------------------------------------------------------------------------//
 				
 				if (auxiliar>13){
-					System.out.println("Error, no es un n˙mero v·lido.");
+					System.out.println("Error, no es un n√∫mero v√°lido.");
 				}
 				
 //--------------[FIN PROGRAMA]------------------------------------------------------------------------------------------------------------------------------------------------//
