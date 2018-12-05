@@ -1,8 +1,9 @@
-//Néstor Romero Díaz
-//Finish date: 15-11-2018
-//Link to challenge: https://www.aceptaelreto.com/problem/statement.php?id=106
-//Use: Programa que dado un código de barras, calcula si este es válido según si es EAN8 O EAN13 y en último caso dice pais de procedencia o Desconocido si se da el caso
-
+/*
+ * Néstor Romero Díaz
+ * Fecha finalización: 15-11-2018
+ * Link to challenge: https://www.aceptaelreto.com/problem/statement.php?id=106
+ * Programa que dado un código de barras, calcula si este es válido según si es EAN8 O EAN13 y en último caso dice pais de procedencia o Desconocido si se da el caso
+ */
 package Volumen1;
 
 import java.util.Scanner;
