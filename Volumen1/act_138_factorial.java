@@ -1,59 +1,67 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * N閟tor Romero D韆z
+ * Fecha finalizaci髇: 05-12-2018
+ * Link to challenge: https://www.aceptaelreto.com/problem/statement.php?id=138
+ * Programa para calcular el numero de 0 que tiene al final el factorial de un numero
  */
 package Volumen1;
 import java.util.*;
-/**
- *
- * @author AlumnoDAM
- */
-public class vol1_act138_factorial {
 
-    /**
-     * @param args the command line arguments
-     */
+public class act_138_factorial {
+
     public static void main(String[] args) {
-        boolean control = false;
-        int entradas=0, contador=0;
+    	
+        boolean control = false; //control de flujo
+        int entradas=0; //para saber total de numeros a calcular
+        int contador = 0; //para saber cuantos numeros hay calculados
+        
         Scanner lector = new Scanner(System.in);
         
-        try{//Introducci贸n de entradas.
+        //Introduccion de entradas.
+        try{
                 System.out.println("Introduce numero de entradas total:");
                 entradas = lector.nextInt();
             }
             catch(Exception err){
-                System.out.println("Error en la introducci贸n.");
+                System.out.println("Error en la introduccion.");
             }
         
+        //Calculo de ceros.
         do{
-            int factorial=0, numero=0;
-            String auxiliar;
+            int numero = 0; //numero que introduce usuario
+            int ceroFactorial = 0; //donde se suma numero de ceros
             
-            try{//Introducci贸n de entradas.
+            //Introduccion de numero.
+            try{
                 System.out.println("Introduce numero:");
-                factorial = lector.nextInt();
-                numero = factorial -1;
+                numero = lector.nextInt();
             }
             catch(Exception err){
-                System.out.println("Error en la introducci贸n.");
+                System.out.println("Error en la introduccion.");
             }
             
-            while ( numero!=0) {
-            factorial=factorial*numero;
-            numero--;
+            //Para saber cuantos 0 tiene el factorial de un numero, es necesario dividir entre 5 el numero obtenido.
+            //Si ese resultado es mayor que 5, se vuelve a dividir entre 5 hasta que el numero sea menor que 5.
+            //Todos los resultados de las divisiones (sin contar el resto) se suman.
+            //El total de la suma de todas las divisiones es el total de ceros que contiene el factorial de un numero.
+            while(!control) {
+            	numero = numero/5;
+            	ceroFactorial= ceroFactorial+numero;
+            	
+            	if(numero<5) {
+            		control = true;
+            	}
             }
-            System.out.println(factorial);
-            auxiliar = Integer.toString(factorial);
-            //for(int i=0; i<)
-            
-            
-            contador++;    
-            if(contador == entradas){
+            control=false;
+            System.out.println(ceroFactorial); //SALIDA
+     
+            contador++; //suma un contador por entrada calculada    
+            if(contador == entradas){ //si contador llega a numero de entradas totales... programa acabado
                 control=true;
-            }        
+            }
+            
         } while(!control);
+        
         System.out.println("bye");
                 
     }
