@@ -1,8 +1,9 @@
-//Néstor Romero Díaz
-//Finish date: 10-11-2018
-//Link to challenge: https://www.aceptaelreto.com/problem/statement.php?id=101
-//Use: Programa que definiendo el tamaño de columnas/filas de un cuadrado, introducimos valores y obtenemos si es un cuadrado mágico o no, y si lo es, si es diabolico o diabiolico + esoterico.
-
+/*
+ * NÃ©stor Romero DÃ­az
+ * Fecha finalizaciÃ³n: 10-11-2018
+ * Link to challenge: https://www.aceptaelreto.com/problem/statement.php?id=101
+ * Programa que definiendo el tamaÃ±o de columnas/filas de un cuadrado, introducimos valores y obtenemos si es un cuadrado mÃ¡gico o no, y si lo es, si es diabolico o diabiolico + esoterico.
+ */
 package Volumen1;
 
 import java.util.Scanner;
@@ -15,15 +16,15 @@ public class act_101_DiabolicosYesotericos {
 		
 		do { //bucle para repetir cuadrados hasta que se indique 0.
 			
-			String datoIntroducido; //para obtener número del usuario.
-			int n=0, n2=0, cm, cm2; //n = numero de digitos por fila/columna //n2 = n elevado al cuadrado //cm = connstante mágica //cm2 = constante magica2.
+			String datoIntroducido; //para obtener nÃºmero del usuario.
+			int n=0, n2=0, cm, cm2; //n = numero de digitos por fila/columna //n2 = n elevado al cuadrado //cm = connstante mÃ¡gica //cm2 = constante magica2.
 			int sumaFila=0, sumaColumn=0, sumaDiago=0, sumaEsquinas=0, sumaCentro=0, sumaCentroLados=0; //Usamos las sumas para comprobar si son diabolicos o esotericos.
 			
 			Scanner lector = new Scanner(System.in);
 			
 			//Pedimos el numero de filas/columnas y obtenemos el cuadrado.
 			try {
-				System.out.println("Introduce número de filas/columnas del cuadrado:");
+				System.out.println("Introduce nÃºmero de filas/columnas del cuadrado:");
 				datoIntroducido = lector.next();
 				n = Integer.parseInt(datoIntroducido);
 				n2 = (int) Math.pow(n, 2);
@@ -32,14 +33,14 @@ public class act_101_DiabolicosYesotericos {
 					System.exit(1);
 				}
 			} catch(NumberFormatException ex) {
-				System.out.println("No es un número");
+				System.out.println("No es un nÃºmero");
 			}
 			
-			//Creamos la array que contendrá los dígitos del cuadrado.
+			//Creamos la array que contendrÃ¡ los dÃ­gitos del cuadrado.
 			int [][] cuadrado = new int [n][n]; 
 			
-			//Introducción de números dentro del cuadrado.
-			System.out.println("Introduce números hasta que se diga basta:");
+			//IntroducciÃ³n de nÃºmeros dentro del cuadrado.
+			System.out.println("Introduce nÃºmeros hasta que se diga basta:");
 			for(int i=0; i<n; i++) {
 				for(int j=0;j<n; j++) {
 					do {
@@ -48,7 +49,7 @@ public class act_101_DiabolicosYesotericos {
 							cuadrado[i][j] = Integer.parseInt(datoIntroducido);
 							control=true;
 						} catch(NumberFormatException ex) {
-							System.out.println("No es un número");
+							System.out.println("No es un nÃºmero");
 						}
 					} while (!control);
 					control=false;
@@ -75,9 +76,9 @@ public class act_101_DiabolicosYesotericos {
 			System.out.println(sumaFila + " " + sumaColumn + " " + sumaDiago); //comprobamos sumas
 			
 			if (sumaFila == sumaColumn && sumaFila == sumaDiago) {
-				cm = sumaColumn; //obtenemos la Constante mágica
-				System.out.print("Es un cuadrado mágico diabolico.");
-				cm2 = (4 * cm)/n; //obtenemos valor de Constante mágica 2
+				cm = sumaColumn; //obtenemos la Constante mÃ¡gica
+				System.out.print("Es un cuadrado mÃ¡gico diabolico.");
+				cm2 = (4 * cm)/n; //obtenemos valor de Constante mÃ¡gica 2
 				sumaEsquinas = sumaEsquinas + cuadrado[0][0] + cuadrado[0][n-1] + cuadrado[n-1][0] + cuadrado[n-1][n-1];
 				
 				if(n%2==0) {
@@ -91,7 +92,7 @@ public class act_101_DiabolicosYesotericos {
 					sumaCentro = cuadrado[(n-1)/2][(n-1)/2] + cuadrado[(n-1)/2][n/2] + cuadrado[n/2][(n-1)/2] + cuadrado[n/2][n/2];
 					
 					if (sumaCentro==cm2 && sumaCentroLados == cm2*2 && sumaEsquinas ==cm2) { //comprobamos si es esoterico
-						System.out.println(" También es un cuadrado par mágico esotérico.");
+						System.out.println(" TambiÃ©n es un cuadrado par mÃ¡gico esotÃ©rico.");
 					}
 				} else {
 					//sumamos la casilla central de cada lado
@@ -100,7 +101,7 @@ public class act_101_DiabolicosYesotericos {
 					sumaCentro = sumaCentro + cuadrado[(n-1)/2][(n-1)/2]*4;
 					
 					if (sumaCentro==cm2 && sumaCentroLados ==cm2 && sumaEsquinas ==cm2) { //comprobamos si es esoterico
-						System.out.println(" Tembién es un cuadrado impar mágico esotérico.");
+						System.out.println(" TembiÃ©n es un cuadrado impar mÃ¡gico esotÃ©rico.");
 					}
 				}
 				
